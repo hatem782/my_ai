@@ -30,7 +30,7 @@ function Speech() {
   //micro is desactivated => open micro
   useEffect(() => {
     if (!listening && transcript === "") {
-      SpeechRecognition.startListening();
+      SpeechRecognition.startListening({ language: "ar-tn" });
       setAI_Answer("");
     }
 
@@ -66,6 +66,7 @@ function Speech() {
           {key} : {v.name}
         </div>
       ))} */}
+      <button>Listen again</button>
     </div>
   );
 }
