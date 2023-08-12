@@ -7,7 +7,7 @@ import { useSpeechSynthesis } from "react-speech-kit";
 
 import { AnswerFromAi } from "../config/openai";
 
-function Speech() {
+function Speech({ refrech }) {
   const {
     transcript,
     listening,
@@ -46,7 +46,7 @@ function Speech() {
         });
       });
     }
-  }, [listening, text]);
+  }, [listening, text, refrech]);
 
   if (!browserSupportsSpeechRecognition) {
     return <span>Browser doesn't support speech recognition.</span>;
@@ -66,7 +66,6 @@ function Speech() {
           {key} : {v.name}
         </div>
       ))} */}
-      <button>Listen again</button>
     </div>
   );
 }
