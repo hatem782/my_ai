@@ -5,6 +5,8 @@ import SpeechRecognition, {
 
 import { useSpeechSynthesis } from "react-speech-kit";
 
+import { AnswerFromAi } from "../config/openai";
+
 function Speech() {
   const {
     transcript,
@@ -19,6 +21,7 @@ function Speech() {
     },
   });
   const [text, setText] = useState("");
+  const [AI_Answer, setAI_Answer] = useState("");
 
   useEffect(() => {
     setText(transcript);
@@ -28,13 +31,19 @@ function Speech() {
   useEffect(() => {
     if (!listening && transcript === "") {
       SpeechRecognition.startListening();
+      setAI_Answer("");
     }
 
     if (!listening && transcript !== "") {
-      speak({
-        text: text,
-        pitch: 2,
-        voice: voices[108],
+      console.log(text);
+
+      AnswerFromAi(text, (answer) => {
+        setAI_Answer(answer);
+        speak({
+          text: answer,
+          pitch: 2,
+          voice: voices[108],
+        });
       });
     }
   }, [listening, text]);
@@ -46,6 +55,12 @@ function Speech() {
   return (
     <div>
       <p>{text}</p>
+
+      {AI_Answer && (
+        <p>
+          {"=>"} {AI_Answer}
+        </p>
+      )}
     </div>
   );
 }
