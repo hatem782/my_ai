@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Speech from "./Speech/Speech";
+import Speech from "./Speech/Speech.ar";
 
 function App() {
   return (
