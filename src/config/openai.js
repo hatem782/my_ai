@@ -21,7 +21,8 @@ export const AnswerFromAi = (message, onSuccess) => {
     .request(options)
     .then((response) => {
       onSuccess(
-        response?.data?.openai?.answers[0] || "i can't answer this question"
+        response?.data?.openai?.answers.join(" ") ||
+          "i can't answer this question"
       );
     })
     .catch((error) => {
