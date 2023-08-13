@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Speech from "./Speech/Speech.ar";
+import Speech from "./Speech/Speech";
 import { useState } from "react";
 
 function App() {
